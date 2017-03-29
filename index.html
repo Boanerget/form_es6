@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="es">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="public/semantic/semantic.min.css" />
+
+
+    <title>Formulario Prueba</title>
+</head>
+
+<body>
+    <div class="ui centered grid" id="formulario_usuario">
+        <br><br>
+        <div class="six wide tablet twelve wide computer column">
+            <div class="ui form">
+                <div class="" id="mensajeError">
+                    <div class="header" id="header">
+                           
+                    </div>        
+                </div>
+                <form class="ui form" id="formulario_crear_usuario">
+                    <h3 class="ui horizontal divider header">Datos de Usuario</h3>
+
+                    <div class="field">
+                            <div class="two fields">
+                            <div class="field" id="errorUser">
+                                <label>Usuario</label>
+                                <input type="text" name="usuario" id="usuario" placeholder="Usuario">
+                            </div>
+                            <div class="field" id="errorEmail">
+                                <label>Email</label>
+                                <input type="email" name="email" id="email" placeholder="Direccion Email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="two fields">
+                            <div class="field" id="errorPassw">
+                                <label>Password</label>
+                                <input type="password" name="password" id ="passw"  placeholder="Password" />
+                            </div>
+                            <div class="field" id="confiPassw">
+                                <label>Confirmar Password</label>
+                                <input type="password" name="password_confirmacion" placeholder="Confirmar Password">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="two fields">
+                            <div class="field">
+                                <label>Permisos</label>
+                            </div>
+                            <div class="field">
+                                <label>Tipo de usuario</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui toggle checkbox">
+                            <label>Usuario activo</label>
+                            <input type="checkbox" name="activo" ng-model="DatosForm.activo" ng-init="DatosForm.activo = true">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <input type="file" name="imagen" placeholder="" ng-model-file="DatosForm.imagen" id="file">
+                    </div>
+                    <br>
+
+                    <br>
+                    <div class="field">
+                        <div class="big positive ui right floated button" id="btn-registrar">Registrar</div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="semantic/semantic.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
