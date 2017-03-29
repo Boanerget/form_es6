@@ -78,12 +78,6 @@ var confirPassw =() => {
 }
 //---------------------------------------------------------------------------
 var validacion = () => {
-	//En caso de que todo vaya bien
-	/*
-	if (user() == true){ 
-		errorUser.className = "ui success message";
-	}
-	*/
 	//En caso de algun error
 	if (user() == false){
 		mensaje.className = "ui negative message";
