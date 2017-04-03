@@ -25,26 +25,26 @@
                     <h3 class="ui horizontal divider header">Datos de Usuario</h3>
 
                     <div class="field">
-                            <div class="two fields">
-                            <div class="field" id="errorUser">
+                         <div class="two fields">
+                            <div class="field" id="user">
                                 <label>Usuario</label>
-                                <input type="text" name="usuario" id="usuario" placeholder="Usuario">
+                                <input type="text" id="usuarioValor" placeholder="Usuario">
                             </div>
-                            <div class="field" id="errorEmail">
+                            <div class="field" id="email">
                                 <label>Email</label>
-                                <input type="email" name="email" id="email" placeholder="Direccion Email">
+                                <input type="email" id="emailValor" placeholder="Direccion Email">
                             </div>
                         </div>
                     </div>
                     <div class="field">
                         <div class="two fields">
-                            <div class="field" id="errorPassw">
+                            <div class="field" id="Passw">
                                 <label>Password</label>
-                                <input type="password" name="password" id ="passw"  placeholder="Password" />
+                                <input type="password" id ="passwValor"  placeholder="Password" />
                             </div>
                             <div class="field" id="confiPassw">
                                 <label>Confirmar Password</label>
-                                <input type="password" name="password_confirmacion" placeholder="Confirmar Password">
+                                <input type="password" id="confiPasswValor" placeholder="Confirmar Password">
                             </div>
                         </div>
                     </div>
@@ -53,21 +53,20 @@
                             <div class="field">
                                 <label>Permisos</label>
                             </div>
-                            <div class="field">
-                                <label>Tipo de usuario</label>
-                            </div>
+                            
+                            <div class="field" id="file">
+                        <input type="file" name="imagen" id="fileValor">
+                    </div>
+                    <br>
                         </div>
                     </div>
                     <div class="field">
                         <div class="ui toggle checkbox">
+                            <input type="checkbox" name="activo" id="checkbox">
                             <label>Usuario activo</label>
-                            <input type="checkbox" name="activo" ng-model="DatosForm.activo" ng-init="DatosForm.activo = true">
                         </div>
                     </div>
-                    <div class="field">
-                        <input type="file" name="imagen" placeholder="" ng-model-file="DatosForm.imagen" id="file">
-                    </div>
-                    <br>
+                    
 
                     <br>
                     <div class="field">

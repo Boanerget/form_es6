@@ -6,14 +6,15 @@ const btn = document.getElementById("btn-registrar");
 const mensaje = document.getElementById("mensajeError");
 
 //Errores en los campos
-const errorUser = document.getElementById("errorUser");
-const errorEmail = document.getElementById("errorEmail");
-const errorPassw = document.getElementById("errorPassw");
-const errorConfiPassw = document.getElementById("confiPassw");
+const user = document.getElementById("user");
+const email = document.getElementById("email");
+const passw = document.getElementById("passw");
+const confiPassw = document.getElementById("confiPassw");
+const file = document.getElementById("file");
 
-var user = () => {
+var userValid = () => {
 
-	let user = document.getElementById("usuario").value;
+	let user = document.getElementById("usuarioValor").value;
 	let boolean  = true;
 	if (user == ""){
 		mensaje.innerHTML ="<center><h5>Ingrese un usuario</h5></center>";
@@ -24,13 +25,12 @@ var user = () => {
 		mensaje.innerHTML ="<center><h5> Su usuario debe tener mas de 5 caracteres</h5></center>";
 		boolean = false;
 	}
-
 	return boolean;
 }
 
-var email = () => {
+var emailValid = () => {
 
-	let email = document.getElementById("email").value;
+	let email = document.getElementById("emailValor").value;
 	let boolean  = true;
 	if (email == ""){
 		mensaje.innerHTML ="<center><h5>Ingrese su email</h5></center>";
@@ -45,9 +45,9 @@ var email = () => {
 
 var password ="";
 
-var passw = () => {
+var passwValid = () => {
 
-	let passw = document.getElementById("passw").value;
+	let passw = document.getElementById("passwValor").value;
 	let boolean  = true;
 	if (passw == ""){
 		mensaje.innerHTML ="<center><h5>Ingrese su contraseña</h5></center>";
@@ -60,12 +60,12 @@ var passw = () => {
 	password = passw;
 	return boolean;
 }
-var confirPassw =() => {
+var confirPasswValid =() => {
 
-	let passw = document.getElementById("confiPassw").value;
+	let passw = document.getElementById("confiPasswValor").value;
 	let boolean  = true;
 	if (passw == ""){
-		alert("Campo confirmar contraseña vacio");
+		mensaje.innerHTML ="<center><h5>El campo confirmar Password esta vacio</h5></center>";
 		boolean = false;
 	}
 	else if (password != passw) {
@@ -74,29 +74,54 @@ var confirPassw =() => {
 		boolean = false;
 	}
 	return boolean;
+}
+var fileValid = () => {
+
+	let nombreFile = document.getElementById("fileValor").value;
+	let boolean = true;
+	//Obtener la extencion de la imagen para validarla
+	let posicionPunto = nombreFile.indexOf(".");
+	let tamañoNombreFile = nombreFile.length;
+	let extencionFile = nombreFile.slice(posicionPunto + 1, tamañoNombreFile);
+	//Array de extenciones de imagenes
+	const EXTENCIONES = ["jpeg","jpg","png","gif","JPG"];
+	//Comparar extenciones
+	//1- Buscar en extenciones 
+	let posicionCoin = EXTENCIONES.indexOf(extencionFile);
+	if(nombreFile == ""){
+		mensaje.innerHTML =`<center><h5>No ha cargado ningún archivo</h5></center>`;
+		boolean = false;
+	}
+	else if (EXTENCIONES[posicionCoin] == undefined){
+		mensaje.innerHTML =`<center><h5>La extencion .${ extencionFile } no esta permitida para cargar un archivo</h5></center>`;
+		boolean = false;
+	}
+	return boolean;
 
 }
 //---------------------------------------------------------------------------
 var validacion = () => {
-	//En caso de algun error
-	if (user() == false){
-		mensaje.className = "ui negative message";
-		errorUser.className  = "field ui error";
-	}
 
-	else if (email() == false){
+	//En caso de algun error
+	if (userValid() == false){
 		mensaje.className = "ui negative message";
-		errorEmail.className  = "field ui error";
+		user.className  = "field ui error";
 	}
-	
-	else if (passw() == false){
+	else if (emailValid() == false){
 		mensaje.className = "ui negative message";
-		errorPassw.className  = "field ui error";
+		email.className  = "field ui error";
 	}
-	else if (confirPassw() == false){
+	else if (passwValid() == false){
 		mensaje.className = "ui negative message";
-		errorConfiPassw.className  = "field ui error";
+		passw.className  = "field ui error";
+	}
+	else if (confirPasswValid() == false){
+		mensaje.className = "ui negative message";
+		confiPassw.className  = "field ui error";
+	}
+	else if (fileValid() == false){
+		mensaje.className = "ui negative message";
+		file.style.backgroundColor = "#fff0f0";
 	}
 }
-
 btn.addEventListener("click", validacion);
