@@ -2,42 +2,51 @@
 //Validar un formulario.
 
 //Boton registrar
-const btn = document.getElementById("btn-registrar");
-const mensaje = document.getElementById("mensajeError");
+const BTN = document.getElementById("btnRegistrar");
+const MENSAJE = document.getElementById("mensajeError");
 
 //Errores en los campos
-const user = document.getElementById("user");
-const email = document.getElementById("email");
-const passw = document.getElementById("passw");
-const confiPassw = document.getElementById("confiPassw");
-const file = document.getElementById("file");
+const PADRE_USER = document.getElementById("padreUser");
+const PADRE_EMAIL = document.getElementById("padreEmail");
+const PADRE_PASSW = document.getElementById("padrePassw");
+const PADRE_CONFI_PASSW = document.getElementById("padreConfiPassw");
+const PADRE_FILE = document.getElementById("padreFile");
+const CHECKBOX = document.getElementById("checkbox");
 
+//Acceder a los inputs
+const USER = document.getElementById("user");
+const EMAIL = document.getElementById("email");
+const PASSW = document.getElementById("passw");
+const CONFI_PASSW = document.getElementById("confiPassw");
+const FILE = document.getElementById("file");
+
+
+//_________________Funciones para las validaciones________________________
 var userValid = () => {
 
-	let user = document.getElementById("usuarioValor").value;
 	let boolean  = true;
-	if (user == ""){
-		mensaje.innerHTML ="<center><h5>Ingrese un usuario</h5></center>";
+	if (USER.value == ""){
+		MENSAJE.innerHTML ="<center><h5>Ingrese un usuario</h5></center>";
 		boolean = false;
 	}
-	else if ( user.length > 1 && user.length <= 5 ) {
+	else if ( USER.value.length > 1 && USER.value.length <= 5 ) {
 
-		mensaje.innerHTML ="<center><h5> Su usuario debe tener mas de 5 caracteres</h5></center>";
+		MENSAJE.innerHTML ="<center><h5> Su usuario debe tener mas de 5 caracteres</h5></center>";
 		boolean = false;
 	}
+	
 	return boolean;
 }
 
 var emailValid = () => {
 
-	let email = document.getElementById("emailValor").value;
 	let boolean  = true;
-	if (email == ""){
-		mensaje.innerHTML ="<center><h5>Ingrese su email</h5></center>";
+	if (EMAIL.value == ""){
+		MENSAJE.innerHTML ="<center><h5>Ingrese su email</h5></center>";
 		boolean = false;
 	}
-	else if ( email.length > 1 && email.length <= 8 ) {
-		mensaje.innerHTML ="<center><h5> Su emai debe tener mas de 8 caracteres</h5></center>";
+	else if ( EMAIL.value.length > 1 && EMAIL.value.length <= 8 ) {
+		MENSAJE.innerHTML ="<center><h5> Su emai debe tener mas de 8 caracteres</h5></center>";
 		boolean = false;
 	}
 	return boolean;
@@ -47,81 +56,108 @@ var password ="";
 
 var passwValid = () => {
 
-	let passw = document.getElementById("passwValor").value;
 	let boolean  = true;
-	if (passw == ""){
-		mensaje.innerHTML ="<center><h5>Ingrese su contraseña</h5></center>";
+	if (PASSW.value == ""){
+		MENSAJE.innerHTML ="<center><h5>Ingrese su contraseña</h5></center>";
 		boolean = false;
 	}
-	else if (passw.length > 1 && passw.length <= 5 ) {
-		mensaje.innerHTML ="<center><h5> Su contraseña debe tener mas de 5 caracteres</h5></center>";
+	else if (PASSW.value.length > 1 && PASSW.value.length <= 5 ) {
+		MENSAJE.innerHTML ="<center><h5> Su contraseña debe tener mas de 5 caracteres</h5></center>";
 		boolean = false;
 	}
-	password = passw;
+	password = PASSW.value;
 	return boolean;
 }
 var confirPasswValid =() => {
 
-	let passw = document.getElementById("confiPasswValor").value;
 	let boolean  = true;
-	if (passw == ""){
-		mensaje.innerHTML ="<center><h5>El campo confirmar Password esta vacio</h5></center>";
+	if (CONFI_PASSW.value == ""){
+		MENSAJE.innerHTML ="<center><h5>El campo confirmar Password esta vacio</h5></center>";
 		boolean = false;
 	}
-	else if (password != passw) {
+	else if (password != CONFI_PASSW.value) {
 
-		mensaje.innerHTML ="<center><h5>Las contraseñas no coinciden</h5></center>";
+		MENSAJE.innerHTML ="<center><h5>Las contraseñas no coinciden</h5></center>";
 		boolean = false;
 	}
 	return boolean;
 }
 var fileValid = () => {
 
-	let nombreFile = document.getElementById("fileValor").value;
 	let boolean = true;
 	//Obtener la extencion de la imagen para validarla
-	let posicionPunto = nombreFile.indexOf(".");
-	let tamañoNombreFile = nombreFile.length;
-	let extencionFile = nombreFile.slice(posicionPunto + 1, tamañoNombreFile);
+	let posicionPunto = FILE.value.indexOf(".");
+	let tamañoNombreFile = FILE.value.length;
+	let extencionFile = FILE.value.slice(posicionPunto + 1, tamañoNombreFile);
 	//Array de extenciones de imagenes
 	const EXTENCIONES = ["jpeg","jpg","png","gif","JPG"];
 	//Comparar extenciones
 	//1- Buscar en extenciones 
 	let posicionCoin = EXTENCIONES.indexOf(extencionFile);
-	if(nombreFile == ""){
-		mensaje.innerHTML =`<center><h5>No ha cargado ningún archivo</h5></center>`;
+	if(FILE.value == ""){
+		MENSAJE.innerHTML =`<center><h5>No ha cargado ningún archivo</h5></center>`;
 		boolean = false;
 	}
 	else if (EXTENCIONES[posicionCoin] == undefined){
-		mensaje.innerHTML =`<center><h5>La extencion .${ extencionFile } no esta permitida para cargar un archivo</h5></center>`;
+		MENSAJE.innerHTML =`<center><h5>La extencion .${ extencionFile } no esta permitida para cargar un archivo</h5></center>`;
 		boolean = false;
 	}
 	return boolean;
 
 }
-//---------------------------------------------------------------------------
+//___________________Confirmaciones de las Validaciones________________________
 var validacion = () => {
 
 	//En caso de algun error
 	if (userValid() == false){
-		mensaje.className = "ui negative message";
-		user.className  = "field ui error";
+		MENSAJE.className = "ui negative message";
+		PADRE_USER.className  = "field ui error";
 	}
+
 	else if (emailValid() == false){
-		mensaje.className = "ui negative message";
-		email.className  = "field ui error";
+		MENSAJE.className = "ui negative message";
+		PADRE_EMAIL.className  = "field ui error";
+		/*Quitar el error del campo user*/
+		PADRE_USER.className = "field";
+		//Poner la clase positivo
+		USER.className = "positivo";
 	}
 	else if (passwValid() == false){
-		mensaje.className = "ui negative message";
-		passw.className  = "field ui error";
+		MENSAJE.className = "ui negative message";
+		PADRE_PASSW.className  = "field ui error";
+		/*Quitar el error del campo email*/
+		PADRE_EMAIL.className = "field";
+		//Poner la clase positivo
+		EMAIL.className = "positivo";
 	}
 	else if (confirPasswValid() == false){
-		mensaje.className = "ui negative message";
-		confiPassw.className  = "field ui error";
+		MENSAJE.className = "ui negative message";
+		PADRE_CONFI_PASSW.className  = "field ui error";
+		/*Quitar el error del campo passw*/
+		PADRE_PASSW.className = "field";
+		//Poner la clase positivo
+		PASSW.className = "positivo";
 	}
 	else if (fileValid() == false){
-		mensaje.className = "ui negative message";
-		file.style.backgroundColor = "#fff0f0";
+		MENSAJE.className = "ui negative message";
+		FILE.style.backgroundColor = "#fff0f0";
+		/*Quitar el error del campo confiPassw*/
+		PADRE_CONFI_PASSW.className = "field";
+		//Poner la clase positivo
+		CONFI_PASSW.className = "positivo";
 	}
+	/*Icono cargando luego de precionar el boton registrar*/
+	var cargar = document.getElementById("form_cargar");
+
+	setTimeout(function(){ 
+		cargar.className = "ui loading form";
+	}
+	,1);
+	setTimeout(function(){ 
+		cargar.className = "ui form";
+	}
+	,700);
+
+	//__________________________________________________________________
 }
-btn.addEventListener("click", validacion);
+BTN.addEventListener("click", validacion);
