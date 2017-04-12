@@ -146,6 +146,7 @@ var validacion = () => {
 		//Poner la clase positivo
 		CONFI_PASSW.className = "positivo";
 	}
+
 	/*Icono cargando luego de precionar el boton registrar*/
 	var cargar = document.getElementById("form_cargar");
 
@@ -157,7 +158,7 @@ var validacion = () => {
 		cargar.className = "ui form";
 	}
 	,700);
-
-	//__________________________________________________________________
 }
+
+//__________________________________________________________________
 BTN.addEventListener("click", validacion);
